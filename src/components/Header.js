@@ -7,7 +7,7 @@ class Header extends Component {
       <div>
       	<header>
       		<h1>Christmas Market</h1>
-      		<div>button</div>
+      		<div className='menuBtn'>Menu</div>
       	</header>
       </div>
     );
