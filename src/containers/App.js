@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Header from '../components/Header.js';
-import MyMap from '../components/MyMap.js';
-import LocationList from '../components/LocationList.js';
-import '../styles/App.css';
+import Header from '../components/Header';
+import MyMap from '../components/MyMap';
+import LocationList from '../components/LocationList';
+import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <Header />
         <LocationList />
         <MyMap />
