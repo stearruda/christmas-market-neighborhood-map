@@ -3,11 +3,17 @@ import React, { Component } from 'react';
 
 class LocationList extends Component {
   render() {
-    return (
-      <div>
-      	Hello Locations
-      </div>
-    );
+  	let locationList = this.props.display
+
+  	if (!locationList) {
+  		return null
+  	} else {
+	    return (
+	      <div>
+	      	Hello Locations
+	      </div>
+	    ); 		
+  	}
   }
 }
 
