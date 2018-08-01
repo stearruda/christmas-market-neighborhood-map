@@ -1,0 +1,58 @@
+[
+	{
+		"id": 0,
+		"title": "Weihnachtsmarkt am Chinesischen Turm",
+		"position": {
+			"lat": 48.151504,
+			"lng": 11.5923763
+		}
+	},
+	{
+		"id": 1,
+		"title": "Haidhauser Weihnachtsmarkt",
+		"position": {
+			"lat": 48.128568,
+			"lng": 11.5961263
+		}
+	},
+	{
+		"id": 2,
+		"title": "Weihnachtsdorf im Kaiserhof der Residenz",
+		"position": {
+			"lat": 48.1414477,
+			"lng": 11.5756429
+		}
+	},
+	{
+		"id": 3,
+		"title": "Mittelaltermarkt am Wittelsbacherplatz",
+		"position": {
+			"lat": 48.1436109,
+			"lng": 11.5736273
+		}
+	},
+	{
+		"id": 4,
+		"title": "Christkindlmarkt am Marienplatz",
+		"position": {
+			"lat": 48.1370307,
+			"lng": 11.5755901
+		}
+	},
+	{
+		"id": 5,
+		"title": "Christkindlmarkt am Sendlinger Tor",
+		"position": {
+			"lat": 48.1341002,
+			"lng": 11.5654462
+		}
+	},
+	{
+		"id": 6,
+		"title": "Neuhauser Weihnachtsmarkt",
+		"position": {
+			"lat": 48.1524666,
+			"lng": 11.5312431
+		}
+	}
+]
