@@ -10,9 +10,9 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-  padding: 0 15px;
+  padding: 15px 30px;
   color: gray;
- /* https://www.toptal.com/designers/subtlepatterns/stripes-light/ */
+	/* https://www.toptal.com/designers/subtlepatterns/stripes-light/ */
   background: url(../images/stripes-light.png) lightgray;
   border-bottom: 1px solid lightgray;
 }
@@ -42,5 +42,32 @@ header .menuBtn {
 
 	header .menuBtn {
 		font-size: 1em;
+	}
+}
+
+/* LOCATION SECTION */
+
+.location-section {
+	background-color: gray;
+	position: fixed;
+	right: 0;
+	width: 100%;
+}
+
+.location-section li {
+	color: white;
+	font-size: 0.9em;
+	padding: 12px 0;
+	border-bottom: 1px solid white;
+	cursor: pointer;
+}
+
+.location-section li:hover {
+	background-color: #941F1F;
+}
+
+@media screen and (min-width: 769px) {
+	.location-section {
+		width: 300px;
 	}
 }

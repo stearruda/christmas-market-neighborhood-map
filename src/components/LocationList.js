@@ -9,8 +9,12 @@ class LocationList extends Component {
   		return null
   	} else {
 	    return (
-	      <div>
-	      	Hello Locations
+	      <div className="location-section">
+          <ul>
+            <li>{this.props.locations[0].title}</li>
+            <li>{this.props.locations[1].title}</li>
+	      	  <li>{this.props.locations[2].title}</li>
+          </ul>
 	      </div>
 	    ); 		
   	}

@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import MyMap from '../components/MyMap';
 import LocationList from '../components/LocationList';
+/* Data of locations */
+import * as locations from '../data/locations.json';
+/* Style */
 import './App.css';
 
 class App extends Component {
 	state = {
-		displayLocationList: true
+		displayLocationList: false,
+    locations: locations
 	}
 
 	toggleMenuBtn() {
 		this.setState(prevState => ({
-			displayLocationList: !prevState.displayLocationList
+			displayLocationList: !prevState.displayLocationList,
 		}))
-		console.log('toggled')
 	}
 
   render() {
@@ -23,7 +26,8 @@ class App extends Component {
         	toggleMenuBtn = {this.toggleMenuBtn.bind(this)}
         />
         <LocationList
-     			display = {this.state.displayLocationList}
+          display = {this.state.displayLocationList}
+          locations = {this.state.locations}
         />
         <MyMap />
       </div>
