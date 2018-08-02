@@ -54,6 +54,12 @@ header .menuBtn {
 	width: 100%;
 }
 
+.location-section input {
+	width: 100%;
+	padding: 12px 10px;
+	color: gray;
+}
+
 .location-section li {
 	color: white;
 	font-size: 0.9em;

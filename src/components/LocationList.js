@@ -3,28 +3,47 @@ import React, { Component } from 'react';
 
 class LocationList extends Component {
   state = {
-    markets: this.props.locations
+    query: '',
   }
 
-  render() {
-  	let locationList = this.props.display
+  updateQuery = (query) => {
+    this.setState({
+      query: query
+    })
+  }
 
-    const createLocationContainer = (location) => (
+  getFilteredLocations(){
+    return this.props.locations.filter((location) => {
+        return location.title.toLowerCase().includes(
+          this.state.query.toLowerCase()
+        )
+      }
+    )
+  }
+
+  getLocationListContainers(){
+    const locationListContainers = this.getFilteredLocations().map((location) => (
       <li
         key={location.id}
       >{location.title}</li>
-    )
+    ))
+    return locationListContainers
+  }
 
-    const locationListContainer = this.state.markets.map(createLocationContainer)
-
-
-    if (!locationList) {
+  render() {
+    if (!this.props.display) {
       return null
     } else {
       return (
         <div className="location-section">
+          <input
+            type='text'
+            placeholder='Search'
+            value={this.state.query}
+            onChange={(event) => this.updateQuery(event.target.value)}
+          />
           <ul>
-            {locationListContainer}
+            {this.getLocationListContainers()}
           </ul>
 	      </div>
 	    ); 		
