@@ -2,18 +2,29 @@ import React, { Component } from 'react';
 
 
 class LocationList extends Component {
+  state = {
+    markets: this.props.locations
+  }
+
   render() {
   	let locationList = this.props.display
 
-  	if (!locationList) {
-  		return null
-  	} else {
-	    return (
-	      <div className="location-section">
+    const createLocationContainer = (location) => (
+      <li
+        key={location.id}
+      >{location.title}</li>
+    )
+
+    const locationListContainer = this.state.markets.map(createLocationContainer)
+
+
+    if (!locationList) {
+      return null
+    } else {
+      return (
+        <div className="location-section">
           <ul>
-            <li>{this.props.locations[0].title}</li>
-            <li>{this.props.locations[1].title}</li>
-	      	  <li>{this.props.locations[2].title}</li>
+            {locationListContainer}
           </ul>
 	      </div>
 	    ); 		
