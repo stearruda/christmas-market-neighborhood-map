@@ -15,21 +15,39 @@ class App extends Component {
 
 	toggleMenuBtn() {
 		this.setState(prevState => ({
-			displayLocationList: !prevState.displayLocationList,
+			displayLocationList: !prevState.displayLocationList
 		}))
 	}
 
   render() {
     return (
       <div className='App'>
-        <Header 
-        	toggleMenuBtn = {this.toggleMenuBtn.bind(this)}
+        <Header
+          toggleMenuBtn={this.toggleMenuBtn.bind(this)}
         />
         <LocationList
-          display = {this.state.displayLocationList}
-          locations = {this.state.locations}
+          display={this.state.displayLocationList}
+          locations={this.state.locations}
         />
-        <MyMap />
+        <MyMap
+          isMarkerShown
+          googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
+          loadingElement={
+            <div
+              style={{ height: `100%` }}
+            />
+          }
+          containerElement={
+            <div
+              style={{ height: `100vh` }}
+            />
+          }
+          mapElement={
+            <div
+            style={{ height: `100%` }}
+            />
+          }
+        />
       </div>
     );
   }
