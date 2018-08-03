@@ -12,8 +12,10 @@ class LocationList extends Component {
     })
   }
 
+  // Building A Search Filter - https://www.youtube.com/watch?v=OlVkYnVXPl0
   getFilteredLocations(){
     return this.props.locations.filter((location) => {
+        // https://dev.to/adroitcoder/includes-vs-indexof-in-javascript
         return location.title.toLowerCase().includes(
           this.state.query.toLowerCase()
         )
