@@ -6,7 +6,7 @@ class MapMarker extends Component {
   render() {
     return(
     	<Marker
-      	position={{ lat: 48.151504, lng: 11.5923763 }}
+      	position={this.props.location}
         icon={ChristmasIcon}
       />
     )

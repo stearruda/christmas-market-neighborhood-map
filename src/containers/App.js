@@ -44,7 +44,7 @@ class App extends Component {
           }
           mapElement={
             <div
-            style={{ height: `100%` }}
+             style={{ height: `100%` }}
             />
           }
         />
