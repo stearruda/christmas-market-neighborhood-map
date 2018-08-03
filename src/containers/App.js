@@ -30,7 +30,7 @@ class App extends Component {
           locations={this.state.locations}
         />
         <MyMap
-          isMarkerShown
+          locations={this.state.locations}
           googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
           loadingElement={
             <div
