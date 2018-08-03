@@ -10,7 +10,8 @@ import './App.css';
 class App extends Component {
 	state = {
 		displayLocationList: false,
-    locations: locations
+    locations: locations,
+    query: ''
 	}
 
 	toggleMenuBtn() {
@@ -18,6 +19,24 @@ class App extends Component {
 			displayLocationList: !prevState.displayLocationList
 		}))
 	}
+
+  updateQuery(query){
+    this.setState({
+      query: query
+    })
+  }
+
+  // Building A Search Filter - https://www.youtube.com/watch?v=OlVkYnVXPl0
+  getFilteredLocations(){
+    return this.state.locations.filter((location) => {
+        // https://dev.to/adroitcoder/includes-vs-indexof-in-javascript
+        return location.title.toLowerCase().includes(
+          this.state.query.toLowerCase()
+        )
+      }
+    )
+  }
+
 
   render() {
     return (
@@ -27,10 +46,12 @@ class App extends Component {
         />
         <LocationList
           display={this.state.displayLocationList}
-          locations={this.state.locations}
+          locations={this.getFilteredLocations()}
+          whenUpdateQuery={this.updateQuery.bind(this)}
+          query={this.state.query}
         />
         <MyMap
-          locations={this.state.locations}
+          locations={this.getFilteredLocations()}
           googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
           loadingElement={
             <div

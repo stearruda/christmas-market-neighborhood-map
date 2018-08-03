@@ -2,29 +2,10 @@ import React, { Component } from 'react';
 
 
 class LocationList extends Component {
-  state = {
-    query: '',
-  }
-
-  updateQuery = (query) => {
-    this.setState({
-      query: query
-    })
-  }
-
-  // Building A Search Filter - https://www.youtube.com/watch?v=OlVkYnVXPl0
-  getFilteredLocations(){
-    return this.props.locations.filter((location) => {
-        // https://dev.to/adroitcoder/includes-vs-indexof-in-javascript
-        return location.title.toLowerCase().includes(
-          this.state.query.toLowerCase()
-        )
-      }
-    )
-  }
+  state = {}
 
   getLocationListContainers(){
-    const locationListContainers = this.getFilteredLocations().map((location) => (
+    const locationListContainers = this.props.locations.map((location) => (
       <li
         key={location.id}
       >{location.title}</li>
@@ -41,8 +22,8 @@ class LocationList extends Component {
           <input
             type='text'
             placeholder='Search'
-            value={this.state.query}
-            onChange={(event) => this.updateQuery(event.target.value)}
+            value={this.props.query}
+            onChange={(event) => this.props.whenUpdateQuery(event.target.value)}
           />
           <ul>
             {this.getLocationListContainers()}
