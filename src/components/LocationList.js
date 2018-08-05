@@ -8,6 +8,7 @@ class LocationList extends Component {
     const locationListContainers = this.props.locations.map((location) => (
       <li
         key={location.id}
+        onClick={(event) => {console.log(location.id)}}
       >{location.title}</li>
     ))
     return locationListContainers
