@@ -3,11 +3,25 @@ import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import MapMarker from './MapMarker';
 
 const MyMap = withScriptjs(withGoogleMap((props) => {
-	const markers = props.locations.map((location) => 
-   	<MapMarker
-   		key={location.id}
-   		location={{lat: location.position.lat, lng:location.position.lng}}
-   	/>
+	const markers = props.locations.map((location) => {
+			let animate = false
+
+	    if (location.id === props.clickedLocationId) {
+	      animate = true
+	    } else {
+	      animate = false
+	    }
+
+
+
+	   	return (
+	   		<MapMarker
+		   		key={location.id}
+		   		markerLocation={{lat: location.position.lat, lng:location.position.lng}}
+		   		animate={animate}
+	   		/>
+	  	)
+  	}
   )
 
 		return (

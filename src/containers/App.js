@@ -11,7 +11,8 @@ class App extends Component {
 	state = {
 		displayLocationList: false,
     locations: locations,
-    query: ''
+    query: '',
+    clickedLocationId: null
 	}
 
 	toggleMenuBtn() {
@@ -37,6 +38,9 @@ class App extends Component {
     )
   }
 
+  animateMarker(id){
+    this.setState({clickedLocationId: id})
+  }
 
   render() {
     return (
@@ -45,12 +49,14 @@ class App extends Component {
           toggleMenuBtn={this.toggleMenuBtn.bind(this)}
         />
         <LocationList
+          whenLocationIsClicked={this.animateMarker.bind(this)}
           display={this.state.displayLocationList}
           locations={this.getFilteredLocations()}
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={this.state.query}
         />
         <MyMap
+          clickedLocationId={this.state.clickedLocationId}
           locations={this.getFilteredLocations()}
           googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
           loadingElement={
@@ -58,6 +64,7 @@ class App extends Component {
               style={{ height: `100%` }}
             />
           }
+
           containerElement={
             <div
               style={{ height: `100vh` }}
