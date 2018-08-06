@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   selectLocation(location){
-    this.setState({clickedLocation: location})
+    this.setState({clickedLocation: location, clickedLocationLikes: null})
 
     const api = 'https://api.foursquare.com/v2'
     const resource =`venues/${location.venueId}/likes`

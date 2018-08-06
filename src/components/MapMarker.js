@@ -17,7 +17,11 @@ class MapMarker extends Component {
       animation = 1
 
       let infoWindowText = this.props.location.title
-      let numberOfLikes = this.props.clickedLocationLikes
+      let numberOfLikes = '...'
+      if(this.props.clickedLocationLikes !== null){
+        numberOfLikes = this.props.clickedLocationLikes
+      }
+
       infoWindow =  (<InfoWindow>
             <div>
              <h3>{infoWindowText}</h3>
