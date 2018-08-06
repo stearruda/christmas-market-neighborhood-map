@@ -16,27 +16,22 @@ class MapMarker extends Component {
 
   render() {
     let animation = null
-
-    if (this.props.animate === true) {
+    let infoWindow = null
+    if(this.props.isSelected === true){
       animation = 1
-    } else {
-      animation = null
+      infoWindow =  (<InfoWindow>
+             <span>Something</span>
+         </InfoWindow>)
     }
 
     return(
-
     	<Marker
       	position={this.props.markerLocation}
         icon={ChristmasIcon}
         animation={animation}
         onClick={() => this.handleToggleOpen()}
       >
-      {
-        this.state.isOpen &&
-         <InfoWindow>
-             <span>Something</span>
-         </InfoWindow>
-      }
+      {infoWindow}
       </Marker>
     )
   }

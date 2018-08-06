@@ -48,11 +48,10 @@ class App extends Component {
     let foursquareVenueId = location.venueId
 
     fetch(`${api}${foursquareVenueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`)
-   .then(res => res.json())
-   .then(obj => {
-       console.log('batata 2')
-       console.log(obj.response.venue.likes.count)
-     })
+    .then(res => res.json())
+    .then(obj => {
+      console.log(obj.response.venue.likes.count)
+    })
   }
 
   render() {

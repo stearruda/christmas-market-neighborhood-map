@@ -4,16 +4,16 @@ import MapMarker from './MapMarker';
 
 const MyMap = withScriptjs(withGoogleMap((props) => {
 	const markers = props.locations.map((location) => {
-			let animate = false
+		let amISelected = false
 			if((props.clickedLocation != null)
 					&& (location.id === props.clickedLocation.id)){
-					animate = true
+					amISelected = true
 			}			
 	   	return (
 	   		<MapMarker
 		   		key={location.id}
 		   		markerLocation={{lat: location.position.lat, lng:location.position.lng}}
-		   		animate={animate}
+		   		isSelected={amISelected}
 	   		/>
 	  	)
   	}
