@@ -9,6 +9,9 @@ class MapMarker extends Component {
     this.props.whenMarkerIsClicked(this.props.location)
   }
 
+  handleInfoWindowOnClose = () => {
+    this.props.whenMarkerIsClicked(null)
+  }
 
   render() {
     let animation = null
@@ -22,10 +25,10 @@ class MapMarker extends Component {
         numberOfLikes = this.props.clickedLocationLikes
       }
 
-      infoWindow =  (<InfoWindow>
+      infoWindow =  (<InfoWindow onCloseClick={() => this.handleInfoWindowOnClose()}>
             <div>
              <h3>{infoWindowText}</h3>
-             <p>Number of Likes: {numberOfLikes}</p>
+             <p>Number of Likes on Foursquare: {numberOfLikes}</p>
             </div>
          </InfoWindow>)
     }

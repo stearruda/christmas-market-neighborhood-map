@@ -40,18 +40,24 @@ class App extends Component {
   }
 
   selectLocation(location){
-    this.setState({clickedLocation: location, clickedLocationLikes: null})
-
-    const api = 'https://api.foursquare.com/v2'
-    const resource =`venues/${location.venueId}/likes`
-    const clientId = '2SGDZPKY5NOEIDG4KHMEVYVE2YY3EVQBUY1WNT1ZXQ5DWMP5'
-    const clientSecret = '3EI4UPHQ3JGUO0BYTFRNLBDWR1P2KRYZASA2LALAFSSMEFBY'
-
-    fetch(`${api}/${resource}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`)
-    .then(res => res.json())
-    .then(obj => {
-      this.setState({clickedLocationLikes: obj.response.likes.count})
+    this.setState({
+      clickedLocation: location, 
+      clickedLocationLikes: null,
+      displayLocationList: false
     })
+
+    if(location !== null){
+      const api = 'https://api.foursquare.com/v2'
+      const resource =`venues/${location.venueId}/likes`
+      const clientId = '2SGDZPKY5NOEIDG4KHMEVYVE2YY3EVQBUY1WNT1ZXQ5DWMP5'
+      const clientSecret = '3EI4UPHQ3JGUO0BYTFRNLBDWR1P2KRYZASA2LALAFSSMEFBY'
+
+      fetch(`${api}/${resource}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`)
+      .then(res => res.json())
+      .then(obj => {
+        this.setState({clickedLocationLikes: obj.response.likes.count})
+      })
+    }
   }
 
 
