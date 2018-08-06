@@ -6,7 +6,6 @@ class MapMarker extends Component {
   state = {}
 
   handleMarkerOnClick = () => {
-    console.log('nananananana')
     this.props.whenMarkerIsClicked(this.props.location)
   }
 
@@ -16,8 +15,14 @@ class MapMarker extends Component {
     let infoWindow = null
     if(this.props.isSelected === true){
       animation = 1
+
+      let infoWindowText = this.props.location.title
+      let numberOfLikes = this.props.clickedLocationLikes
       infoWindow =  (<InfoWindow>
-             <span>Something</span>
+            <div>
+             <h3>{infoWindowText}</h3>
+             <p>Number of Likes: {numberOfLikes}</p>
+            </div>
          </InfoWindow>)
     }
 

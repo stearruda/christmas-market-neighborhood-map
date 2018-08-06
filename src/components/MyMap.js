@@ -16,6 +16,7 @@ const MyMap = withScriptjs(withGoogleMap((props) => {
 		   		markerLocation={{lat: location.position.lat, lng:location.position.lng}}
 		   		isSelected={amISelected}
 		   		whenMarkerIsClicked={props.whenMarkerIsClicked}
+		   		clickedLocationLikes={props.clickedLocationLikes}
 	   		/>
 	  	)
   	}
