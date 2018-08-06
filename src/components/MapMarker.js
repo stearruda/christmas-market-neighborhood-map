@@ -3,14 +3,11 @@ import { Marker, InfoWindow } from 'react-google-maps'
 import ChristmasIcon from '../images/gingerbread-man-48.png'
 
 class MapMarker extends Component {
-  state = {
-    isOpen: false,
-  }
+  state = {}
 
-  handleToggleOpen = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen
-    }))
+  handleMarkerOnClick = () => {
+    console.log('nananananana')
+    this.props.whenMarkerIsClicked(this.props.location)
   }
 
 
@@ -29,7 +26,7 @@ class MapMarker extends Component {
       	position={this.props.markerLocation}
         icon={ChristmasIcon}
         animation={animation}
-        onClick={() => this.handleToggleOpen()}
+        onClick={() => this.handleMarkerOnClick()}
       >
       {infoWindow}
       </Marker>

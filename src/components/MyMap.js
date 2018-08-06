@@ -12,8 +12,10 @@ const MyMap = withScriptjs(withGoogleMap((props) => {
 	   	return (
 	   		<MapMarker
 		   		key={location.id}
+		   		location={location}
 		   		markerLocation={{lat: location.position.lat, lng:location.position.lng}}
 		   		isSelected={amISelected}
+		   		whenMarkerIsClicked={props.whenMarkerIsClicked}
 	   		/>
 	  	)
   	}

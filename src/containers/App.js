@@ -54,6 +54,8 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className='App'>
@@ -68,6 +70,7 @@ class App extends Component {
           query={this.state.query}
         />
         <MyMap
+          whenMarkerIsClicked={this.selectLocation.bind(this)}
           clickedLocation={this.state.clickedLocation}
           locations={this.getFilteredLocations()}
           googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
