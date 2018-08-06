@@ -12,8 +12,6 @@ const MyMap = withScriptjs(withGoogleMap((props) => {
 	      animate = false
 	    }
 
-
-
 	   	return (
 	   		<MapMarker
 		   		key={location.id}
