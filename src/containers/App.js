@@ -12,7 +12,7 @@ class App extends Component {
 		displayLocationList: false,
     locations: locations,
     query: '',
-    clickedLocationId: null
+    clickedLocation: null
 	}
 
 	toggleMenuBtn() {
@@ -38,8 +38,21 @@ class App extends Component {
     )
   }
 
-  animateMarker(id){
-    this.setState({clickedLocationId: id})
+  selectLocation(location){
+    this.setState({clickedLocation: location})
+    console.log(location.venueId)
+
+    const api = 'https://api.foursquare.com/v2/venues/'
+    const clientId = '2SGDZPKY5NOEIDG4KHMEVYVE2YY3EVQBUY1WNT1ZXQ5DWMP5'
+    const clientSecret = '3EI4UPHQ3JGUO0BYTFRNLBDWR1P2KRYZASA2LALAFSSMEFBY'
+    let foursquareVenueId = location.venueId
+
+    fetch(`${api}${foursquareVenueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`)
+   .then(res => res.json())
+   .then(obj => {
+       console.log('batata 2')
+       console.log(obj.response.venue.likes.count)
+     })
   }
 
   render() {
@@ -49,14 +62,14 @@ class App extends Component {
           toggleMenuBtn={this.toggleMenuBtn.bind(this)}
         />
         <LocationList
-          whenLocationIsClicked={this.animateMarker.bind(this)}
+          whenLocationIsClicked={this.selectLocation.bind(this)}
           display={this.state.displayLocationList}
           locations={this.getFilteredLocations()}
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={this.state.query}
         />
         <MyMap
-          clickedLocationId={this.state.clickedLocationId}
+          clickedLocation={this.state.clickedLocation}
           locations={this.getFilteredLocations()}
           googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs'
           loadingElement={
