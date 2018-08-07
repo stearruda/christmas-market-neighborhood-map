@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 
 
 class Header extends Component {
-  state = {
-    displayLocationList: true
-  }
-
-  clickEvent() {
-    this.props.toggleMenuBtn()
-  }
+  state = {}
 
   render() {
     return (
       <div>
-      	<header>
-      		<h1>Christmas Market</h1>
+      	<header 
+          role='banner'
+          tabIndex='0'
+        >
+      		<h1 tabIndex='0'>Christmas Market</h1>
       		<div 
+            tabIndex='0'
             className='menuBtn'
-            onClick={(e) => this.clickEvent(e)}
+            aria-label='Toggle Menu of Locations'
+            onClick={(e) => this.props.toggleMenuBtn(e)}
           >Menu</div>
       	</header>
       </div>

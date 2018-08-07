@@ -13,22 +13,25 @@ class App extends Component {
     locations: locations,
     query: '',
     clickedLocation: null,
-    clickedLocationLikes: null
+    clickedLocationLikes: null,
 	}
 
+  // Toggle Location List when Menu Button is clicked
 	toggleMenuBtn() {
 		this.setState(prevState => ({
 			displayLocationList: !prevState.displayLocationList
 		}))
 	}
 
+  // Handle with the input when is typed
   updateQuery(query){
     this.setState({
       query: query
     })
   }
 
-  // Building A Search Filter - https://www.youtube.com/watch?v=OlVkYnVXPl0
+  // Filter locations 
+  // Code Reference: Building A Search Filter-https://www.youtube.com/watch?v=OlVkYnVXPl0
   getFilteredLocations(){
     return this.state.locations.filter((location) => {
         // https://dev.to/adroitcoder/includes-vs-indexof-in-javascript
@@ -61,7 +64,6 @@ class App extends Component {
   }
 
 
-
   render() {
     return (
       <div className='App'>
@@ -70,7 +72,7 @@ class App extends Component {
         />
         <LocationList
           whenLocationIsClicked={this.selectLocation.bind(this)}
-          display={this.state.displayLocationList}
+          isDisplayed={this.state.displayLocationList}
           locations={this.getFilteredLocations()}
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={this.state.query}
@@ -86,10 +88,12 @@ class App extends Component {
               style={{ height: `100%` }}
             />
           }
-
           containerElement={
             <div
               style={{ height: `100vh` }}
+              role="application"
+              tabIndex="0"
+              aria-label="Map with locations of Christmas Markets"
             />
           }
           mapElement={
