@@ -71,6 +71,7 @@ class App extends Component {
       })
       //Manage error when data is retrieved from Foursquare
       .catch((error) => {
+        alert(`Sorry, can't get information from Foursquare due to error ${error}`)
         console.log(`Info didn't load due to error: ${error}`)
       })
     }
@@ -95,6 +96,7 @@ class App extends Component {
             (<h1>Ops! Something went wrong. Check your connection and try again.</h1>)
         }
         <MyMap
+          // Data of Likes came from Foursquare API
           clickedLocationLikes={this.state.clickedLocationLikes}
           whenMarkerIsClicked={this.selectLocation.bind(this)}
           clickedLocation={this.state.clickedLocation}
