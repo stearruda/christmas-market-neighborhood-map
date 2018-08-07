@@ -80,3 +80,21 @@ header .menuBtn {
 		height: 100%;
 	}
 }
+
+/* INFOWINDOW */
+
+.infowindow-container {
+	padding-top: 10px;
+}
+
+.infowindow-container > * {
+	padding-bottom: 5px;
+}
+
+.infowindow-container img {
+	width: 50%;
+}
+
+.infowindow-container :last-child {
+	padding-bottom: 0;
+}
