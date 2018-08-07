@@ -55,10 +55,23 @@ class App extends Component {
       const clientId = '2SGDZPKY5NOEIDG4KHMEVYVE2YY3EVQBUY1WNT1ZXQ5DWMP5'
       const clientSecret = '3EI4UPHQ3JGUO0BYTFRNLBDWR1P2KRYZASA2LALAFSSMEFBY'
 
+      // Fetch data from Foursquare
       fetch(`${api}/${resource}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`)
-      .then(res => res.json())
+      .then(res => {
+          if(res.ok){
+            return res.json()
+          } else{
+            alert(`Sorry, can't get information from Foursquare...`)
+            throw new Error(`Sorry, can't get information from Foursquare...`)
+          }
+        }
+      )
       .then(obj => {
         this.setState({clickedLocationLikes: obj.response.likes.count})
+      })
+      //Manage error when data is retrieved from Foursquare
+      .catch((error) => {
+        console.log(`Info didn't load due to error: ${error}`)
       })
     }
   }
@@ -77,6 +90,10 @@ class App extends Component {
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={this.state.query}
         />
+        {
+          (!navigator.onLine) &&
+            (<h1>Ops! Something went wrong. Check your connection and try again.</h1>)
+        }
         <MyMap
           clickedLocationLikes={this.state.clickedLocationLikes}
           whenMarkerIsClicked={this.selectLocation.bind(this)}
