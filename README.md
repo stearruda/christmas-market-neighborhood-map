@@ -33,8 +33,7 @@ In order to run the application follow these steps:
 * Start the development server with `npm start`
 
 __Note about Service Worker__
-`Create React App`, by default, includes a service worker. To enable it you must run the application in production build mode. 
-
+`Create React App`, by default, includes a service worker. To enable it you must run the application in production build mode.
     ```
     npm run build
     ```
@@ -45,15 +44,15 @@ Run `npm run build` to create a build version of the app that correctly bundles 
 
 ```
 <App />
-  <Header />
+	<Header />
 
-  <LocationList />
+	<LocationList />
 
-  <MyMap />
-    <GoogleMap />
-		  <MapMarker />
-		    <Marker />
-		    	<InfoWindow />
+	<MyMap />
+		<GoogleMap />
+			<MapMarker />
+				<Marker />
+					<InfoWindow />
 ```
 
 ## Dependencies
