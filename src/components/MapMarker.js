@@ -34,7 +34,7 @@ class MapMarker extends Component {
           <div className='infowindow-container'>
             <h3>{this.props.location.title}</h3>
             <p>Likes of this place: {numberOfLikes}</p>
-            <img src={PoweredByFoursquare}/>
+            <img alt='Content Powered by Foursquare' src={PoweredByFoursquare}/>
           </div>
         </InfoWindow>
       )
