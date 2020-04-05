@@ -2,8 +2,6 @@ const http = require("http");
 const url = require("url");
 
 const { processInputChange } = require("./routes/input");
-const { processTime } = require("./routes/time");
-const { processMain } = require("./routes/main");
 const { processPageNotFound } = require("./routes/pageNotFound");
 const { processStaticFiles } = require("./routes/processStatic");
 
@@ -19,9 +17,7 @@ const server = http.createServer((req, res) => {
     routeFn = processStaticFiles;
   } else {
     const routes = {
-      "/time": processTime,
-      "/input": processInputChange,
-      "/main": processMain
+      "/input": processInputChange
     };
     routeFn = routes[path];
   }
