@@ -4,9 +4,9 @@ const processPageNotFound = (req, res) => {
       <img
         width='300px'
         height='auto'
-        src='/files/img/not-today-covid19-sign-on-wooden-stool-3952231.jpg'
+        src='/static/img/not-today-covid19-sign-on-wooden-stool-3952231.jpg'
       />
-      <script src='/files/js/batata.js'></script>
+      <script src='/static/js/batata.js'></script>
     </body>
   `;
   // const html = `<body><p style='color:red'>Page not found</p></body>`;

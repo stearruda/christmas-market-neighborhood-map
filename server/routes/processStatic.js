@@ -3,7 +3,7 @@ const url = require("url");
 
 const processStaticFiles = (req, res) => {
   const path = url.parse(req.url, true).pathname;
-  const internalFilePath = path.replace("/files/", "/");
+  const internalFilePath = path.replace("/static/", "/");
 
   fs.readFile(`./static/${internalFilePath}`, (err, data) => {
     if (!err) {
@@ -14,7 +14,8 @@ const processStaticFiles = (req, res) => {
         ".jpg": "image/jpeg",
         ".js": "text/javascript",
         ".css": "text/css",
-        ".json": "application/json"
+        ".json": "application/json",
+        ".html": "text/html"
       };
       console.log("extension", extension);
 

@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
   console.log(path);
 
   let routeFn;
-  if (path.startsWith("/files/")) {
+  if (path.startsWith("/static/")) {
     routeFn = processStaticFiles;
   } else {
     const routes = {
