@@ -15,7 +15,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log("it mounts");
     fetch(`/markets`)
       .then(res => {
         if (res.ok) {
