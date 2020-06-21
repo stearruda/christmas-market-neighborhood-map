@@ -45,10 +45,30 @@ const getMarkets = (req, res, con) => {
 };
 
 const createMarket = (req, res, con) => {
-  console.log("create market");
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/json");
-  res.end('{"title": "New Market"}');
+  var jsonString = "";
+
+  req.on("data", function (data) {
+    jsonString += data;
+  });
+
+  req.on("end", function () {
+    const requestObject = JSON.parse(jsonString);
+    const { foursquareVenueId, title, lat, lon } = requestObject;
+    console.log(requestObject);
+
+    const sql = `INSERT INTO markets(foursquare_venue_id,title,lat,lon) 
+                  VALUES('${foursquareVenueId}','${title}',${lat},${lon})`;
+
+    console.log("sql", sql);
+
+    con.query(sql, function (err, result, fields) {
+      if (err) throw err;
+
+      res.statusCode = 204;
+      res.setHeader("Content-Type", "application/json");
+      res.end('{"title": "New Market"}');
+    });
+  });
 };
 
 exports.getMarkets = getMarkets;

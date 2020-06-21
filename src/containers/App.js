@@ -12,10 +12,12 @@ class App extends Component {
     isAddMarketDisplayed: false,
     locations: [],
     query: "",
-    title: "",
-    foursquareVenueId: "",
-    lat: "",
-    lon: "",
+    inputValue: {
+      title: "",
+      foursquareVenueId: "",
+      lat: "",
+      lon: "",
+    },
     clickedLocation: null,
     clickedLocationLikes: null,
   };
@@ -65,21 +67,40 @@ class App extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value,
+      ...this.state,
+      inputValue: { ...this.state.inputValue, [name]: value },
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
+    const { title, foursquareVenueId, lat, lon } = this.state.inputValue;
+    const data = {
+      title,
+      foursquareVenueId,
+      lat,
+      lon,
+    };
     console.log("data to be sent", data);
 
-    alert("You submitted this market: " + this.state.title);
+    fetch("/markets", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
 
-    // fetch("/markets", {
-    //   method: "POST",
-    //   body: data,
-    // });
+    this.setState({
+      inputValue: {
+        title: "",
+        foursquareVenueId: "",
+        lat: "",
+        lon: "",
+      },
+    });
   }
 
   // Filter locations

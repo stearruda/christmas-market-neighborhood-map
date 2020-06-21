@@ -21,7 +21,7 @@ class NewMarketForm extends Component {
             type="text"
             name="title"
             placeholder="Title"
-            value={inputValue}
+            value={inputValue.title}
             onChange={(e) => handleOnChange(e)}
           />
 
@@ -30,7 +30,7 @@ class NewMarketForm extends Component {
             type="text"
             name="foursquareVenueId"
             placeholder="Foursquare Venue Id"
-            value={inputValue}
+            value={inputValue.foursquareVenueId}
             onChange={(e) => handleOnChange(e)}
           />
 
@@ -39,7 +39,7 @@ class NewMarketForm extends Component {
             type="text"
             name="lat"
             placeholder="Latitude"
-            value={inputValue}
+            value={inputValue.lat}
             onChange={(e) => handleOnChange(e)}
           />
 
@@ -48,7 +48,7 @@ class NewMarketForm extends Component {
             type="text"
             name="lon"
             placeholder="Longitude"
-            value={inputValue}
+            value={inputValue.lon}
             onChange={(e) => handleOnChange(e)}
           />
 
