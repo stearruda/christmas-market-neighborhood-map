@@ -64,7 +64,7 @@ label {
 input[type="text"] {
   width: 100%;
   margin: 0 5px;
-  color: gray;
+  color: black;
 }
 
 .location-section .input-search {
