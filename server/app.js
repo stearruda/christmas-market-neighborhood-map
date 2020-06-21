@@ -3,7 +3,7 @@ const url = require("url");
 const mysql = require("mysql");
 
 const { processInputChange } = require("./routes/input");
-const { getMarkets } = require("./routes/markets");
+const { getMarkets, createMarket } = require("./routes/markets");
 const { processPageNotFound } = require("./routes/pageNotFound");
 const { processStaticFiles } = require("./routes/processStatic");
 
@@ -25,16 +25,18 @@ con.connect(function (err) {
 const server = http.createServer((req, res) => {
   const path = url.parse(req.url, true).pathname;
   console.log(path);
+  console.log("request type", req.method);
 
   let routeFn;
   if (path.startsWith("/static/")) {
     routeFn = processStaticFiles;
   } else {
     const routes = {
-      "/input": processInputChange,
-      "/markets": getMarkets,
+      "GET-/input": processInputChange,
+      "GET-/markets": getMarkets,
+      "POST-/markets": createMarket,
     };
-    routeFn = routes[path];
+    routeFn = routes[`${req.method}-${path}`];
   }
 
   if (routeFn) {

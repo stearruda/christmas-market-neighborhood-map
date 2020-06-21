@@ -44,4 +44,12 @@ const getMarkets = (req, res, con) => {
   });
 };
 
+const createMarket = (req, res, con) => {
+  console.log("create market");
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end('{"title": "New Market"}');
+};
+
 exports.getMarkets = getMarkets;
+exports.createMarket = createMarket;
