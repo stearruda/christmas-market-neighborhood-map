@@ -69,6 +69,19 @@ class App extends Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log("data to be sent", data);
+
+    alert("You submitted this market: " + this.state.title);
+
+    // fetch("/markets", {
+    //   method: "POST",
+    //   body: data,
+    // });
+  }
+
   // Filter locations
   // Code Reference: Building A Search Filter-https://www.youtube.com/watch?v=OlVkYnVXPl0
   getFilteredLocations() {
@@ -138,6 +151,7 @@ class App extends Component {
             toggleAddMarketBtn={this.toggleAddMarketBtn.bind(this)}
             inputValue={inputValue}
             handleOnChange={this.handleOnChange.bind(this)}
+            handleSubmit={this.handleSubmit.bind(this)}
           ></NewMarketForm>
         )}
         <LocationList

@@ -4,11 +4,17 @@ class NewMarketForm extends Component {
   state = {};
 
   render() {
-    const { toggleAddMarketBtn, inputValue, handleOnChange } = this.props;
+    const {
+      toggleAddMarketBtn,
+      inputValue,
+      handleOnChange,
+      handleSubmit,
+    } = this.props;
     return (
       <div>
         <form
           style={{ display: "flex", alignItems: "center", padding: "15px" }}
+          onSubmit={handleSubmit}
         >
           <label for="title">Title:</label>
           <input
