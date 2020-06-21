@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+import NewMarketForm from "../components/NewMarketForm";
 import MyMap from "../components/MyMap";
 import LocationList from "../components/LocationList";
 /* Style */
@@ -8,49 +9,70 @@ import "./App.css";
 class App extends Component {
   state = {
     displayLocationList: false,
+    isAddMarketDisplayed: false,
     locations: [],
     query: "",
+    title: "",
+    foursquareVenueId: "",
+    lat: "",
+    lon: "",
     clickedLocation: null,
-    clickedLocationLikes: null
+    clickedLocationLikes: null,
   };
 
   componentDidMount() {
     fetch(`/markets`)
-      .then(res => {
+      .then((res) => {
         if (res.ok) {
           return res.json();
         } else {
           throw new Error(`Sorry, can't get information from Markets...`);
         }
       })
-      .then(responseParsed => {
+      .then((responseParsed) => {
         this.setState({
-          locations: responseParsed
+          locations: responseParsed,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(`Info didn't load due to error: ${error}`);
       });
   }
 
   // Toggle Location List when Menu Button is clicked
   toggleMenuBtn() {
-    this.setState(prevState => ({
-      displayLocationList: !prevState.displayLocationList
+    this.setState((prevState) => ({
+      displayLocationList: !prevState.displayLocationList,
+    }));
+  }
+
+  toggleAddMarketBtn() {
+    this.setState((prevState) => ({
+      isAddMarketDisplayed: !prevState.isAddMarketDisplayed,
     }));
   }
 
   // Handle with the input when is typed
   updateQuery(query) {
     this.setState({
-      query: query
+      query: query,
+    });
+  }
+
+  handleOnChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
     });
   }
 
   // Filter locations
   // Code Reference: Building A Search Filter-https://www.youtube.com/watch?v=OlVkYnVXPl0
   getFilteredLocations() {
-    return this.state.locations.filter(location => {
+    return this.state.locations.filter((location) => {
       // https://dev.to/adroitcoder/includes-vs-indexof-in-javascript
       return location.title
         .toLowerCase()
@@ -62,7 +84,7 @@ class App extends Component {
     this.setState({
       clickedLocation: location,
       clickedLocationLikes: null,
-      displayLocationList: false
+      displayLocationList: false,
     });
 
     if (location !== null) {
@@ -75,7 +97,7 @@ class App extends Component {
       fetch(
         `${api}/${resource}?client_id=${clientId}&client_secret=${clientSecret}&v=20180806`
       )
-        .then(res => {
+        .then((res) => {
           if (res.ok) {
             return res.json();
           } else {
@@ -83,11 +105,11 @@ class App extends Component {
             throw new Error(`Sorry, can't get information from Foursquare...`);
           }
         })
-        .then(obj => {
+        .then((obj) => {
           this.setState({ clickedLocationLikes: obj.response.likes.count });
         })
         //Manage error when data is retrieved from Foursquare
-        .catch(error => {
+        .catch((error) => {
           alert(
             `Sorry, can't get information from Foursquare due to error ${error}`
           );
@@ -97,15 +119,33 @@ class App extends Component {
   }
 
   render() {
+    const {
+      displayLocationList,
+      query,
+      clickedLocationLikes,
+      clickedLocation,
+      isAddMarketDisplayed,
+      inputValue,
+    } = this.state;
     return (
       <div className="App">
-        <Header toggleMenuBtn={this.toggleMenuBtn.bind(this)} />
+        <Header
+          toggleMenuBtn={this.toggleMenuBtn.bind(this)}
+          toggleAddMarketBtn={this.toggleAddMarketBtn.bind(this)}
+        />
+        {isAddMarketDisplayed && (
+          <NewMarketForm
+            toggleAddMarketBtn={this.toggleAddMarketBtn.bind(this)}
+            inputValue={inputValue}
+            handleOnChange={this.handleOnChange.bind(this)}
+          ></NewMarketForm>
+        )}
         <LocationList
           whenLocationIsClicked={this.selectLocation.bind(this)}
-          isDisplayed={this.state.displayLocationList}
+          isDisplayed={displayLocationList}
           locations={this.getFilteredLocations()}
           whenUpdateQuery={this.updateQuery.bind(this)}
-          query={this.state.query}
+          query={query}
         />
         {!navigator.onLine && (
           <h1>
@@ -114,9 +154,9 @@ class App extends Component {
         )}
         <MyMap
           // Data of Likes came from Foursquare API
-          clickedLocationLikes={this.state.clickedLocationLikes}
+          clickedLocationLikes={clickedLocationLikes}
           whenMarkerIsClicked={this.selectLocation.bind(this)}
-          clickedLocation={this.state.clickedLocation}
+          clickedLocation={clickedLocation}
           locations={this.getFilteredLocations()}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb1WQLh2JaKpVrdZegH69tVAI2LH9gNs"
           loadingElement={<div style={{ height: `100%` }} />}

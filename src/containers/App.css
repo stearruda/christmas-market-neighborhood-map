@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url("https://fonts.googleapis.com/css?family=Lobster");
 
 .App {
   text-align: center;
@@ -7,94 +7,105 @@
 /* HEADER */
 
 header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   padding: 15px 30px;
   color: gray;
-	/* https://www.toptal.com/designers/subtlepatterns/stripes-light/ */
+  /* https://www.toptal.com/designers/subtlepatterns/stripes-light/ */
   background: url(../images/stripes-light.png) lightgray;
   border-bottom: 1px solid lightgray;
 }
 
 header h1 {
-	font: normal 1.8em 'Lobster', cursive;
-  color: #941F1F;
+  margin-right: auto;
+  font: normal 1.8em "Lobster", cursive;
+  color: #941f1f;
 }
 
-header .menuBtn {
-	color: #fff;
-	font-size: 0.9em;
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	background-color: gray;
-	border: 2px solid lightgray;
-	border-radius: 5px;
-	padding: 8px;
-	cursor: pointer;
+.menuBtn {
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: gray;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 477px) {
-	header h1 {
-		font-size: 2.8em;
-	}
+  header h1 {
+    font-size: 2.8em;
+  }
 
-	header .menuBtn {
-		font-size: 1em;
-	}
+  .menuBtn {
+    font-size: 0.9em;
+  }
 }
 
 /* LOCATION SECTION */
 
 .location-section {
-	background-color: gray;
-	position: relative;
-	right: 0;
-	width: 100%;
-	z-index: 99999999;
+  background-color: gray;
+  position: relative;
+  right: 0;
+  width: 100%;
+  z-index: 99999999;
 }
 
-.location-section input {
-	width: 100%;
-	padding: 12px 10px;
-	color: gray;
+label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  width: 100%;
+  margin: 0 5px;
+  color: gray;
+}
+
+.location-section .input-search {
+  padding: 12px 10px;
+  margin: 0;
 }
 
 .location-section li {
-	color: white;
-	font-size: 0.9em;
-	padding: 12px 0;
-	border-bottom: 1px solid white;
-	cursor: pointer;
+  color: white;
+  font-size: 0.9em;
+  padding: 12px 0;
+  border-bottom: 1px solid white;
+  cursor: pointer;
 }
 
 .location-section li:hover {
-	background-color: #941F1F;
+  background-color: #941f1f;
 }
 
 @media screen and (min-width: 769px) {
-	.location-section {
-		position: absolute;
-		width: 300px;
-		height: 100%;
-	}
+  .location-section {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+  }
 }
 
 /* INFOWINDOW */
 
 .infowindow-container {
-	padding-top: 10px;
+  padding-top: 10px;
 }
 
 .infowindow-container > * {
-	padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .infowindow-container img {
-	width: 50%;
+  width: 50%;
 }
 
 .infowindow-container :last-child {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }
