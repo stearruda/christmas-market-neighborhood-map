@@ -81,7 +81,6 @@ class App extends Component {
       lat,
       lon,
     };
-    console.log("data to be sent", data);
 
     fetch("/markets", {
       method: "POST",
@@ -152,6 +151,30 @@ class App extends Component {
     }
   }
 
+  deleteLocation(location) {
+    const allMarkets = this.state.locations;
+    this.setState((prev) => ({
+      locations: prev.locations.filter((item) => item !== location),
+    }));
+
+    fetch(`/markets/${location.id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          this.setState({
+            locations: allMarkets,
+          });
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          locations: allMarkets,
+        });
+      });
+  }
+
   render() {
     const {
       displayLocationList,
@@ -181,6 +204,7 @@ class App extends Component {
           locations={this.getFilteredLocations()}
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={query}
+          handleDeleteLocation={this.deleteLocation.bind(this)}
         />
         {!navigator.onLine && (
           <h1>

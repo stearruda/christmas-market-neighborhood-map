@@ -4,20 +4,38 @@ class LocationList extends Component {
   state = {};
 
   getLocationListContainers() {
-    const locationListContainers = this.props.locations.map((location) => (
-      <li
-        key={location.id}
-        tabIndex={this.props.isDisplayed ? "0" : "1"}
-        onClick={() => this.props.whenLocationIsClicked(location)}
-      >
-        {location.title}
-      </li>
+    const {
+      locations,
+      isDisplayed,
+      whenLocationIsClicked,
+      handleDeleteLocation,
+    } = this.props;
+    const locationListContainers = locations.map((location) => (
+      <div>
+        <li
+          key={location.id}
+          tabIndex={isDisplayed ? "0" : "1"}
+          onClick={() => whenLocationIsClicked(location)}
+        >
+          {location.title}
+        </li>
+        <button
+          type="button"
+          onClick={() => {
+            handleDeleteLocation(location);
+          }}
+        >
+          Delete
+        </button>
+      </div>
     ));
     return locationListContainers;
   }
 
   render() {
-    if (!this.props.isDisplayed) {
+    const { isDisplayed, query, whenUpdateQuery } = this.props;
+
+    if (!isDisplayed) {
       return null;
     } else {
       return (
@@ -28,8 +46,8 @@ class LocationList extends Component {
             tabIndex="0"
             className="input-search"
             placeholder="Search"
-            value={this.props.query}
-            onChange={(event) => this.props.whenUpdateQuery(event.target.value)}
+            value={query}
+            onChange={(e) => whenUpdateQuery(e.target.value)}
           />
           <ul aria-label="Location List">{this.getLocationListContainers()}</ul>
         </div>

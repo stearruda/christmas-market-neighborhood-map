@@ -12,10 +12,7 @@ class NewMarketForm extends Component {
     } = this.props;
     return (
       <div>
-        <form
-          style={{ display: "flex", alignItems: "center", padding: "15px" }}
-          onSubmit={handleSubmit}
-        >
+        <form className="add-market" onSubmit={handleSubmit}>
           <label for="title">Title:</label>
           <input
             type="text"
@@ -52,17 +49,19 @@ class NewMarketForm extends Component {
             onChange={(e) => handleOnChange(e)}
           />
 
-          <button type="submit" className="menuBtn">
-            Save
-          </button>
+          <div className="add-market__btn-container">
+            <button
+              type="reset"
+              className="cancel-btn"
+              onClick={(e) => toggleAddMarketBtn(e)}
+            >
+              Cancel
+            </button>
 
-          <button
-            type="reset"
-            className="menuBtn"
-            onClick={(e) => toggleAddMarketBtn(e)}
-          >
-            Cancel
-          </button>
+            <button type="submit" className="menuBtn">
+              Save
+            </button>
+          </div>
         </form>
       </div>
     );

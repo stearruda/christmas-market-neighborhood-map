@@ -7,9 +7,6 @@
 /* HEADER */
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   padding: 15px 30px;
   color: gray;
   /* https://www.toptal.com/designers/subtlepatterns/stripes-light/ */
@@ -24,6 +21,7 @@ header h1 {
 }
 
 .menuBtn {
+  margin: 0 0 0 4px;
   color: #fff;
   font-size: 0.8em;
   font-weight: bold;
@@ -36,13 +34,78 @@ header h1 {
   cursor: pointer;
 }
 
-@media screen and (min-width: 477px) {
+@media screen and (min-width: 598px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   header h1 {
     font-size: 2.8em;
   }
 
   .menuBtn {
     font-size: 0.9em;
+  }
+}
+
+/* ADD MARKET FORM */
+
+.add-market {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.add-market label {
+  font-size: 13px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.add-market__btn-container {
+  display: flex;
+  align-self: flex-end;
+  margin: 8px 0 0;
+}
+
+.cancel-btn {
+  background-color: white;
+  padding: 8px;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: gray;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  width: 100%;
+  margin: 5px 5px 15px 5px;
+  padding: 8px 2px;
+  color: black;
+}
+
+@media screen and (min-width: 769px) {
+  .add-market {
+    flex-direction: row;
+  }
+
+  .add-market label {
+    align-self: center;
+  }
+
+  .add-market__btn-container {
+    margin: 0;
+  }
+
+  input[type="text"] {
+    margin: 0 5px;
   }
 }
 
@@ -56,32 +119,32 @@ header h1 {
   z-index: 99999999;
 }
 
-label {
-  font-size: 13px;
-  font-weight: 600;
-}
-
-input[type="text"] {
-  width: 100%;
-  margin: 0 5px;
-  color: black;
-}
-
 .location-section .input-search {
   padding: 12px 10px;
   margin: 0;
 }
 
-.location-section li {
-  color: white;
-  font-size: 0.9em;
-  padding: 12px 0;
+.location-section div {
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid white;
+}
+
+.location-section li {
+  flex: 1 1 100%;
+  padding: 12px;
+  font-size: 0.9em;
+  text-align: left;
+  color: white;
   cursor: pointer;
 }
 
 .location-section li:hover {
   background-color: #941f1f;
+}
+
+.location-section button {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 769px) {
