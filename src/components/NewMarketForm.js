@@ -52,7 +52,7 @@ class NewMarketForm extends Component {
           <div className="add-market__btn-container">
             <button
               type="reset"
-              className="cancel-btn"
+              className="btn-secondary"
               onClick={(e) => toggleAddMarketBtn(e)}
             >
               Cancel
