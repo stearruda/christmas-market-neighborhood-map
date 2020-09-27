@@ -1,3 +1,5 @@
+const url = require("url");
+
 class Market {
   constructor(id, venueId, title, lat, lon) {
     this.id = id;
@@ -54,12 +56,8 @@ const createMarket = (req, res, con) => {
   req.on("end", function () {
     const requestObject = JSON.parse(jsonString);
     const { foursquareVenueId, title, lat, lon } = requestObject;
-    console.log(requestObject);
-
     const sql = `INSERT INTO markets(foursquare_venue_id,title,lat,lon) 
                   VALUES('${foursquareVenueId}','${title}',${lat},${lon})`;
-
-    console.log("sql", sql);
 
     con.query(sql, function (err, result, fields) {
       if (err) throw err;
@@ -71,5 +69,20 @@ const createMarket = (req, res, con) => {
   });
 };
 
+const deleteMarket = (req, res, con) => {
+  const path = url.parse(req.url, true).pathname;
+  const params = path.substring(9);
+  const sql = `DELETE FROM markets WHERE id = ${params}`;
+
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end("Market Deleted");
+  });
+};
+
 exports.getMarkets = getMarkets;
 exports.createMarket = createMarket;
+exports.deleteMarket = deleteMarket;
