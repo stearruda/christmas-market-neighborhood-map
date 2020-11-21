@@ -69,6 +69,34 @@ const createMarket = (req, res, con) => {
   });
 };
 
+const updateMarket = (req, res, con) => {
+  var jsonString = "";
+
+  req.on("data", function (data) {
+    jsonString += data;
+  });
+
+  req.on("end", function () {
+    const requestObject = JSON.parse(jsonString);
+    const { foursquareVenueId, title, lat, lon } = requestObject;
+
+    const path = url.parse(req.url, true).pathname;
+    const params = path.substring(9);
+
+    const sql = `UPDATE markets 
+                  SET foursquare_venue_id = '${foursquareVenueId}', title = '${title}', lat = '${lat}', lon = '${lon}'
+                  WHERE id = ${params}`;
+
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.end("Market Updated");
+    });
+  });
+};
+
 const deleteMarket = (req, res, con) => {
   const path = url.parse(req.url, true).pathname;
   const params = path.substring(9);
@@ -85,4 +113,5 @@ const deleteMarket = (req, res, con) => {
 
 exports.getMarkets = getMarkets;
 exports.createMarket = createMarket;
+exports.updateMarket = updateMarket;
 exports.deleteMarket = deleteMarket;

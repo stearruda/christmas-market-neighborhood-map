@@ -3,7 +3,12 @@ const url = require("url");
 const mysql = require("mysql");
 
 const { processInputChange } = require("./routes/input");
-const { getMarkets, createMarket, deleteMarket } = require("./routes/markets");
+const {
+  getMarkets,
+  createMarket,
+  updateMarket,
+  deleteMarket,
+} = require("./routes/markets");
 const { processPageNotFound } = require("./routes/pageNotFound");
 const { processStaticFiles } = require("./routes/processStatic");
 
@@ -32,6 +37,7 @@ const server = http.createServer((req, res) => {
       "GET-/input": processInputChange,
       "GET-/markets": getMarkets,
       "POST-/markets": createMarket,
+      "PUT-/markets": updateMarket,
       "DELETE-/markets": deleteMarket,
     };
     const resourceGroup = path.match(/(\/[^\/]*)/)[1];

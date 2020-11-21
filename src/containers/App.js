@@ -10,8 +10,10 @@ class App extends Component {
   state = {
     displayLocationList: false,
     isAddMarketDisplayed: false,
+    shouldUpdateMarket: false,
     locations: [],
     query: "",
+    marketId: "",
     inputValue: {
       title: "",
       foursquareVenueId: "",
@@ -51,6 +53,13 @@ class App extends Component {
   toggleAddMarketBtn() {
     this.setState((prevState) => ({
       isAddMarketDisplayed: !prevState.isAddMarketDisplayed,
+      shouldUpdateMarket: false,
+      inputValue: {
+        title: "",
+        foursquareVenueId: "",
+        lat: "",
+        lon: "",
+      },
     }));
   }
 
@@ -74,7 +83,8 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { title, foursquareVenueId, lat, lon } = this.state.inputValue;
+    const { shouldUpdateMarket, marketId, inputValue } = this.state;
+    const { title, foursquareVenueId, lat, lon } = inputValue;
     const data = {
       title,
       foursquareVenueId,
@@ -82,15 +92,27 @@ class App extends Component {
       lon,
     };
 
-    fetch("/markets", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => {
-        console.log(response);
+    if (!shouldUpdateMarket) {
+      fetch("/markets", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
       })
-      .catch((error) => console.log(error));
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      fetch(`/markets/${marketId}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+    }
 
     this.setState({
       inputValue: {
@@ -175,6 +197,22 @@ class App extends Component {
       });
   }
 
+  editLocation(location) {
+    const { id, title, venueId, position } = location;
+
+    this.setState({
+      isAddMarketDisplayed: true,
+      shouldUpdateMarket: true,
+      marketId: id,
+      inputValue: {
+        title,
+        foursquareVenueId: venueId,
+        lat: position.lat,
+        lon: position.lng,
+      },
+    });
+  }
+
   render() {
     const {
       displayLocationList,
@@ -183,6 +221,7 @@ class App extends Component {
       clickedLocation,
       isAddMarketDisplayed,
       inputValue,
+      shouldUpdateMarket,
     } = this.state;
     return (
       <div className="App">
@@ -196,6 +235,7 @@ class App extends Component {
             inputValue={inputValue}
             handleOnChange={this.handleOnChange.bind(this)}
             handleSubmit={this.handleSubmit.bind(this)}
+            submitText={shouldUpdateMarket ? "Update" : "Save"}
           ></NewMarketForm>
         )}
         <LocationList
@@ -205,6 +245,7 @@ class App extends Component {
           whenUpdateQuery={this.updateQuery.bind(this)}
           query={query}
           handleDeleteLocation={this.deleteLocation.bind(this)}
+          handleEditLocation={this.editLocation.bind(this)}
         />
         {!navigator.onLine && (
           <h1>

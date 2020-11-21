@@ -9,6 +9,7 @@ class NewMarketForm extends Component {
       inputValue,
       handleOnChange,
       handleSubmit,
+      submitText,
     } = this.props;
     return (
       <div>
@@ -59,7 +60,7 @@ class NewMarketForm extends Component {
             </button>
 
             <button type="submit" className="menuBtn">
-              Save
+              {submitText}
             </button>
           </div>
         </form>
