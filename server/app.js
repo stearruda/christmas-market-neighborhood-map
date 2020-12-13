@@ -13,7 +13,7 @@ const { processPageNotFound } = require("./routes/pageNotFound");
 const { processStaticFiles } = require("./routes/processStatic");
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 5000;
 
 const con = mysql.createConnection({
   host: "localhost",
@@ -34,14 +34,13 @@ const server = http.createServer((req, res) => {
     routeFn = processStaticFiles;
   } else {
     const routes = {
-      "GET-/input": processInputChange,
-      "GET-/markets": getMarkets,
-      "POST-/markets": createMarket,
-      "PUT-/markets": updateMarket,
-      "DELETE-/markets": deleteMarket,
+      "GET-/api/input": processInputChange,
+      "GET-/api/markets": getMarkets,
+      "POST-/api/markets": createMarket,
+      "PUT-/api/markets": updateMarket,
+      "DELETE-/api/markets": deleteMarket,
     };
-    const resourceGroup = path.match(/(\/[^\/]*)/)[1];
-    const routeKey = `${req.method}-${resourceGroup}`;
+    const routeKey = `${req.method}-${path}`;
     routeFn = routes[routeKey];
   }
 

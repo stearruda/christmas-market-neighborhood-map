@@ -84,11 +84,17 @@ header h1 {
   cursor: pointer;
 }
 
-.btn--delete {
+.btn--actions {
   background-color: gray;
   border: none;
   border-radius: 0;
-  border-left: 2px solid white;
+  flex: 1;
+  border-right: 1px solid white;
+}
+
+.btn--details {
+  color: white;
+  border-right: none;
 }
 
 input[type="text"] {
@@ -118,6 +124,11 @@ input[type="text"] {
 
 /* LOCATION SECTION */
 
+.location-list {
+  overflow: auto;
+  height: 300px;
+}
+
 .location-section {
   background-color: gray;
   position: relative;
@@ -131,8 +142,9 @@ input[type="text"] {
   margin: 0;
 }
 
-.location-section div {
+.location-section__container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border-bottom: 1px solid white;
 }
@@ -144,6 +156,7 @@ input[type="text"] {
   text-align: left;
   color: white;
   cursor: pointer;
+  border-bottom: 2px solid white;
 }
 
 .location-section li:hover {
@@ -154,11 +167,15 @@ input[type="text"] {
   cursor: pointer;
 }
 
+.location-section button:hover {
+  background-color: dimgray;
+}
+
 @media screen and (min-width: 769px) {
   .location-section {
     position: absolute;
     width: 300px;
-    height: 100%;
+    height: auto;
   }
 }
 
