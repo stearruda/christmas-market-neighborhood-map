@@ -14,7 +14,7 @@ class NewMarketForm extends Component {
     return (
       <div>
         <form className="add-market" onSubmit={handleSubmit}>
-          <label for="title">Title:</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
             name="title"
@@ -23,7 +23,7 @@ class NewMarketForm extends Component {
             onChange={(e) => handleOnChange(e)}
           />
 
-          <label for="foursquareVenueId">Foursquare Venue Id:</label>
+          <label htmlFor="foursquareVenueId">Foursquare Venue Id:</label>
           <input
             type="text"
             name="foursquareVenueId"
@@ -32,7 +32,7 @@ class NewMarketForm extends Component {
             onChange={(e) => handleOnChange(e)}
           />
 
-          <label for="lat">Latitude:</label>
+          <label htmlFor="lat">Latitude:</label>
           <input
             type="text"
             name="lat"
@@ -41,7 +41,7 @@ class NewMarketForm extends Component {
             onChange={(e) => handleOnChange(e)}
           />
 
-          <label for="lon">Longitude:</label>
+          <label htmlFor="lon">Longitude:</label>
           <input
             type="text"
             name="lon"
