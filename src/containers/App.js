@@ -11,9 +11,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/market-detail">
-            <MarketDetail />
-          </Route>
+          <Route
+            exact
+            path="/markets/:id"
+            render={(props) => <MarketDetail {...props} />}
+          ></Route>
           <Route exact path="/">
             <Home />
           </Route>

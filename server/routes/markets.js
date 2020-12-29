@@ -46,6 +46,34 @@ const getMarkets = (req, res, con) => {
   });
 };
 
+const getMarket = (req, res, con) => {
+  const path = url.parse(req.url, true).pathname;
+  const marketId = path.substring(13);
+  const sql = `SELECT * FROM markets WHERE id = ${marketId}`;
+
+  con.query(sql, function (err, result) {
+    const markets = result.map((item) => {
+      return new Market(
+        item.id,
+        item.foursquare_venue_id,
+        item.title,
+        item.lat,
+        item.lon
+      );
+    });
+
+    const marketsOutput = markets.map((market) => market.toOutputJSON());
+
+    const responseJSON = JSON.stringify(marketsOutput);
+
+    if (err) throw err;
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end(responseJSON);
+  });
+};
+
 const createMarket = (req, res, con) => {
   var jsonString = "";
 
@@ -81,7 +109,7 @@ const updateMarket = (req, res, con) => {
     const { foursquareVenueId, title, lat, lon } = requestObject;
 
     const path = url.parse(req.url, true).pathname;
-    const params = path.substring(9);
+    const params = path.substring(13);
 
     const sql = `UPDATE markets 
                   SET foursquare_venue_id = '${foursquareVenueId}', title = '${title}', lat = '${lat}', lon = '${lon}'
@@ -99,7 +127,7 @@ const updateMarket = (req, res, con) => {
 
 const deleteMarket = (req, res, con) => {
   const path = url.parse(req.url, true).pathname;
-  const params = path.substring(9);
+  const params = path.substring(13);
   const sql = `DELETE FROM markets WHERE id = ${params}`;
 
   con.query(sql, function (err, result) {
@@ -112,6 +140,7 @@ const deleteMarket = (req, res, con) => {
 };
 
 exports.getMarkets = getMarkets;
+exports.getMarket = getMarket;
 exports.createMarket = createMarket;
 exports.updateMarket = updateMarket;
 exports.deleteMarket = deleteMarket;

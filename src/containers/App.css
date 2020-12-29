@@ -196,3 +196,9 @@ input[type="text"] {
 .infowindow-container :last-child {
   padding-bottom: 0;
 }
+
+.market-img {
+  background-image: url(../images/daniel-sessler-C6l894Q7wpI-unsplash.jpg);
+  background-size: cover;
+  flex: 1
+}

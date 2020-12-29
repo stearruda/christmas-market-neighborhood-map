@@ -2,13 +2,7 @@ const http = require("http");
 const url = require("url");
 const mysql = require("mysql");
 
-const { processInputChange } = require("./routes/input");
-const {
-  getMarkets,
-  createMarket,
-  updateMarket,
-  deleteMarket,
-} = require("./routes/markets");
+const { getRoute } = require("./getRoute");
 const { processPageNotFound } = require("./routes/pageNotFound");
 const { processStaticFiles } = require("./routes/processStatic");
 
@@ -33,15 +27,7 @@ const server = http.createServer((req, res) => {
   if (path.startsWith("/static/")) {
     routeFn = processStaticFiles;
   } else {
-    const routes = {
-      "GET-/api/input": processInputChange,
-      "GET-/api/markets": getMarkets,
-      "POST-/api/markets": createMarket,
-      "PUT-/api/markets": updateMarket,
-      "DELETE-/api/markets": deleteMarket,
-    };
-    const routeKey = `${req.method}-${path}`;
-    routeFn = routes[routeKey];
+    routeFn = getRoute(req.method, path);
   }
 
   if (routeFn) {

@@ -74,7 +74,7 @@ class LocationList extends Component {
           </button>
 
           <Link
-            to="/market-detail"
+            to={`/markets/${location.id}`}
             className="btn-secondary btn--details btn--actions"
           >
             Market Details
